@@ -48,13 +48,11 @@ def delete_translation(translation_id):
     conn.commit()
 
 def extract_words_and_pronunciation(text):
-    # Extract <b> Words </b>: ... and <b> Pronunciation </b>: ... lines, omit Usage
     pattern = r"(<b>\s*Words\s*</b>:\s*.*?)(<br>)(<b>\s*Pronunciation\s*</b>:\s*.*?)(<br>|$)"
     match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
     if match:
         return match.group(1) + "<br>" + match.group(3)
     else:
-        # fallback - return full text if pattern not found
         return text
 
 # --- Prompt generators ---
@@ -126,7 +124,6 @@ def translate(prompt):
 # --- Streamlit UI ---
 st.title("GEN2061 Translator")
 
-# Checkbox to toggle recent translations visibility
 show_history = st.checkbox("Show Recent Translations", value=True)
 
 col1, col2 = st.columns(2)
@@ -151,7 +148,6 @@ if st.button("Translate"):
     else:
         with st.spinner("Translating..."):
             try:
-                # Build prompt based on language pair and direction
                 if language_pair == "English ⇄ Hokkien":
                     if direction == "English → Hokkien":
                         prompt = generate_hokkien_prompt(user_input.strip())
@@ -165,7 +161,6 @@ if st.button("Translate"):
 
                 translation = translate(prompt)
 
-                # Save to DB
                 save_translation(language_pair, direction, user_input.strip(), translation)
                 st.success("Translation:")
                 st.markdown(translation, unsafe_allow_html=True)
@@ -179,7 +174,7 @@ if show_history:
     if history:
         for translation_id, dir_, inp, outp in history:
             with st.container():
-                cols = st.columns([9, 1])  # 90% width for translation, 10% for button
+                cols = st.columns([9, 1])  
                 with cols[0]:
                     st.markdown(f"**Direction:** {dir_}")
                     st.markdown(f"**Input:** {inp}")
