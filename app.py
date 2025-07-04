@@ -68,6 +68,8 @@ def generate_hokkien_prompt(text):
 
     Only include the words, the pronunciation guide and usage.
 
+    Take note that Singapore Hokkien does not recognise "e-tang", more of "e-hiao" is used instead.
+
     Format it like this:
 
     <b> Words </b>: ...
