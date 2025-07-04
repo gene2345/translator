@@ -58,7 +58,9 @@ def extract_words_and_pronunciation(text):
 # --- Prompt generators ---
 def generate_hokkien_prompt(text):
     return f"""
-    Please translate the following English text to Hokkien.
+    Please translate the following English text to Hokkien in the Singapore context. 
+
+    Search relevant information before returning if you are not sure.
 
     {text}
 
@@ -77,7 +79,9 @@ def generate_hokkien_prompt(text):
 
 def generate_english_prompt(text):
     return f"""
-    Please translate the following Hokkien text to English.
+    Please translate the following Hokkien text to English in the Singapore context.
+
+    Search relevant information before returning if you are not sure.
 
     {text}
 
@@ -88,7 +92,9 @@ def generate_english_prompt(text):
 
 def generate_teochew_prompt(text):
     return f"""
-    Please translate the following English text to Teochew.
+    Please translate the following English text to Teochew in the Singapore context.
+
+    Search relevant information before returning if you are not sure. 
 
     {text}
 
@@ -107,7 +113,9 @@ def generate_teochew_prompt(text):
 
 def generate_english_from_teochew_prompt(text):
     return f"""
-    Please translate the following Teochew text to English.
+    Please translate the following Teochew text to English in the Singapore context.
+
+    Search relevant information before returning if you are not sure.
 
     {text}
 
